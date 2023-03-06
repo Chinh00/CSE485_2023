@@ -11,9 +11,8 @@
 </head>
 <body>
     <?php
-        include '../layouts/header.php';
-
-        include '../../includes/Database.php';
+       
+include "./views/layout_admin/header.php";
 
         
     ?>
