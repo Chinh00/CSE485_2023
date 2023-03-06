@@ -11,13 +11,8 @@
 </head>
 <body>
     <?php
-        include '../layouts/header.php';
+        include "./views/layout_admin/header.php";
 
-        include '../../includes/Database.php';
-        $id = $_GET["id"] ?? -1;
-        if ($id > 0) {
-            $tac_gia_edit = $db->getWithCondition("tacgia", array("ma_tgia" => $id));
-        }
         
     ?>
     <main class="container mt-5 mb-5">
@@ -25,12 +20,12 @@
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin tác giả</h3>
-                <form action="process_author.php" method="post" enctype="multipart/form-data">
+                <form action="?controller=author&action=postEdit" method="post" enctype="multipart/form-data">
                     <div class="input-group mb-3">
                         <?php 
-                            if (isset($tac_gia_edit[0]["hinh_tgia"])) {
+                            if ($author->get_hinh_tgia()) {
                         ?>
-                            <img src="<?php echo $tac_gia_edit[0]["hinh_tgia"] ?>" alt="">
+                            <img src="<?php echo $author->get_hinh_tgia() ?>" alt="" height="400" width="400">
                         <?php 
                             } else {
                         ?>
@@ -42,27 +37,28 @@
                     <div class="input-group mt-3 mb-3">
                         <input type="file"  class="form-control" name="img" >
                     </div>
-                    <input type="hidden" value="<?php echo $tac_gia_edit[0]["hinh_tgia"] ?>" name="img_old">
+                    <input type="hidden" value="<?php echo $author->get_hinh_tgia() ?>" name="img_old">
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatId">Mã tác giả</span>
-                        <input type="text" class="form-control" name="txtAuthorId" readonly value="<?php echo $tac_gia_edit[0]["ma_tgia"] ?>">
+                        <input type="text" class="form-control" name="txtAuthorId" readonly value="<?php echo $author->get_ma_tgia() ?>">
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên tác giả</span>
-                        <input type="text" class="form-control" name="txtAuthorName" value = "<?php echo $tac_gia_edit[0]["ten_tgia"] ?>">
+                        <input type="text" class="form-control" name="txtAuthorName" value = "<?php echo $author->get_ten_tgia() ?>">
                     </div>
 
                     <div class="form-group  float-end ">
                         <input type="submit" value="Lưu lại" class="btn btn-success">
-                        <a href="../author/author.php" class="btn btn-warning ">Quay lại</a>
+                        <a href="?controller=author&action=index" class="btn btn-warning ">Quay lại</a>
                     </div>
                 </form>
             </div>
         </div>
     </main>
     <?php 
-        include '../layouts/footer.php';
+        include "./views/layout_admin/header.php";
+
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>

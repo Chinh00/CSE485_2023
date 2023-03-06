@@ -12,7 +12,7 @@
 <body>
     <?php
        
-include "./views/layout_admin/header.php";
+        include "./views/layout_admin/header.php";
 
         
     ?>
@@ -20,7 +20,7 @@ include "./views/layout_admin/header.php";
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="add_author.php" class="btn btn-success">Thêm mới</a>
+                <a href="?controller=author&action=add" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -33,18 +33,18 @@ include "./views/layout_admin/header.php";
                     </thead>
                     <tbody>
                         <?php
-                            foreach($db->getAllRecordTable("tacgia") as $key => $val){
+                            foreach($author as $key){
                         ?>
                             <tr>
-                                <th scope="row"><?php echo $val["ma_tgia"] ?></th>
-                                <td><?php echo $val["ten_tgia"] ?></td>
-                                <td><img src="<?php echo $val["hinh_tgia"] ?>" alt=""></td>
+                                <th scope="row"><?php echo $key->get_ma_tgia() ?></th>
+                                <td><?php echo $key->get_ten_tgia() ?></td>
+                                <td><img src="<?php echo $key->get_hinh_tgia() ?>" alt="" height="80" width="80"></td>
                                 <td>
-                                    <a href="edit_author.php?id=<?php echo $val["ma_tgia"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="?controller=author&action=edit&id=<?php echo $key->get_ma_tgia() ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                                 <td>
-                                    <form action="process_author.php" method="post">
-                                        <input type="hidden" name="delete" value="<?php echo $val["ma_tgia"] ?>">
+                                    <form action="?controller=author&action=delete" method="post">
+                                        <input type="hidden" name="id" value="<?php echo $key->get_ma_tgia() ?>">
                                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
@@ -63,7 +63,8 @@ include "./views/layout_admin/header.php";
 
 
     <?php 
-        include '../layouts/footer.php';
+                include "./views/layout_admin/footer.php";
+
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
