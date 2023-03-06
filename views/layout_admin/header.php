@@ -14,16 +14,16 @@
                             <a class="nav-link active fw-bold" aria-current="page" href="./">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../index.php">Trang ngoài</a>
+                            <a class="nav-link" href="?controller=home&action=index">Trang ngoài</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../../BTTH01_CSE485/admin/category/category.php">Thể loại</a>
+                            <a class="nav-link" href="?controller=category&action=index">Thể loại</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../../BTTH01_CSE485/admin/author/author.php">Tác giả</a>
+                            <a class="nav-link" href="?controller=author&action=index">Tác giả</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../../BTTH01_CSE485/admin/article/article.php">Bài viết</a>
+                            <a class="nav-link" href="?controller=article&action=index">Bài viết</a>
                         </li>
                         <li class="nav-item right">
                             

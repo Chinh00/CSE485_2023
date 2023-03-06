@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="my-logo">
                     <a class="navbar-brand" href="#">
-                        <img src="images/logo2.png" alt="" class="img-fluid">
+                        <img src="../../../btth02v2/assets/images/logo2.png" alt="" class="img-fluid">
                     </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,8 +21,7 @@
                             if (isset($_SESSION["isLogin"])) {
                                 if ($_SESSION["isLogin"] == 1) {
                                     ?>
-                                        <!-- Example single danger button -->
-                                        <div class="btn-group">
+4                                        <div class="btn-group">
                                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                             <?php  echo $_SESSION["role"] ?>
                                         </button>
@@ -36,14 +35,14 @@
                                 }
                                 else {
                                     ?> 
-                                        <a class="nav-link" href="login.php">Đăng nhập</a>
+                                        <a class="nav-link" href="">Đăng nhập</a>
                                     <?php 
                                 }
                                 
                             
                             } else {
                                 ?> 
-                                    <a class="nav-link" href="./login.php">Đăng nhập</a>
+                                    <a class="nav-link" href="?controller=home&action=login">Đăng nhập</a>
                                 <?php 
                             }
                         ?>
@@ -65,13 +64,13 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                <img src="images/slideshow/slide01.jpg" class="d-block w-100" alt="...">
+                <img src="../../../btth02v2/assets/images/slideshow/slide01.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                <img src="images/slideshow/slide02.jpg" class="d-block w-100" alt="...">
+                <img src="../../../btth02v2/assets/images/slideshow/slide02.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                <img src="images/slideshow/slide03.jpg" class="d-block w-100" alt="...">
+                <img src="../../../btth02v2/assets/images/slideshow/slide03.jpg" class="d-block w-100" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

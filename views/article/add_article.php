@@ -11,38 +11,37 @@
 </head>
 <body>
     <?php
-        include '../layouts/header.php';
+        include "./views/layout_admin/header.php";
+        
 
-        include '../../includes/Database.php';
-        $categories = $db->getAllRecordTable("theloai");
-        $authors = $db->getAllRecordTable("tacgia");
+        
     ?>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Thêm bài viết</h3>
-                <form action="process_article.php" method="post" enctype="multipart/form-data">
+                <form action="?controller=article&action=postInsert" method="post" enctype="multipart/form-data">
                     
                     
                     
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tiêu đề</span>
-                        <input type="text" class="form-control" name="txtTitleName">
+                        <input type="text" class="form-control" name="txtTitleName" >
                     </div>
                     
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên bài hát</span>
-                        <input type="text" class="form-control" name="txtMusicName">
+                        <input type="text" class="form-control" name="txtMusicName" >
                     </div>
                     
                     <div class="input-group mt-3 mb-3">
                         <select class="form-select" aria-label="Default select example" name="category_id">
-                            <option selected>Chọn thể loại</option>
+                            <option>Chọn thể loại</option>
                             <?php
-                                foreach($categories as $key => $val) {
+                                foreach($categories as $key) {
                             ?>
-                                <option value="<?php echo $val["ma_tloai"]?>"><?php echo $val["ten_tloai"]  ?></option>
+                                <option value="<?php echo $key->get_ma_tloai()?>" > <?php echo $key->get_ten_tloai() ?></option>
                             <?php
                                 }
                             ?>
@@ -50,11 +49,11 @@
                     </div>
                     <div class="input-group mt-3 mb-3">
                         <select class="form-select" aria-label="Default select example" name="author_id">
-                            <option selected>Chọn tắc giả</option>
+                            <option>Chọn tắc giả</option>
                             <?php
-                                foreach($authors as $key => $val) {
+                                foreach($authors as $key) {
                             ?>
-                                <option value="<?php echo $val["ma_tgia"]?>"><?php echo $val["ten_tgia"]  ?></option>
+                                <option value="<?php echo $key->get_ma_tgia()?>" > <?php echo $key->get_ten_tgia() ?></option>
                             <?php
                                 }
                             ?>
@@ -74,23 +73,26 @@
                     </div>
                     <div class="input-group mt-3 mb-3">
                         <div class="form-floating">
-                            <input type="date" class="form-control" name="date">
+                            <input type="date" class="form-control" name="date" >
                             <label for="floatingTextarea">Chọn ngày</label>
                         </div>
                     </div>
                     <div class="input-group mt-3 mb-3">
                         <input type="file"  class="form-control" name="img">
                     </div>
+                    
+
                     <div class="form-group  float-end ">
                         <input type="submit" value="Lưu lại" class="btn btn-success">
-                        <a href="article.php" class="btn btn-warning ">Quay lại</a>
+                        <a href="?controller=article&action=index" class="btn btn-warning ">Quay lại</a>
                     </div>
                 </form>
             </div>
         </div>
     </main>
     <?php 
-        include '../layouts/footer.php';
+                include "./views/layout_admin/footer.php"
+
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>

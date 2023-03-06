@@ -11,10 +11,8 @@
 </head>
 <body>
     <?php
-        include '../layouts/header.php';
-
-        include '../../includes/Database.php';
-
+        
+include "./views/layout_admin/header.php"
         
     ?>
     <main class="container mt-5 mb-5">
@@ -33,17 +31,17 @@
                     </thead>
                     <tbody>
                         <?php
-                            foreach($db->getAllRecordTable("theloai") as $key => $val){
+                            foreach($categories as $val){
                         ?>
                             <tr>
-                                <th scope="row"><?php echo $val["ma_tloai"] ?></th>
-                                <td><?php echo $val["ten_tloai"] ?></td>
+                                <th scope="row"><?php echo $val->get_ma_tloai() ?></th>
+                                <td><?php echo $val->get_ten_tloai() ?></td>
                                 <td>
-                                    <a href="edit_category.php?id=<?php echo $val["ma_tloai"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="edit_category.php?id=<?php echo $val->get_ma_tloai() ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                                 <td>
                                     <form action="process_add_category.php" method="post">
-                                        <input type="hidden" name="delete" value="<?php echo $val["ma_tloai"] ?>">
+                                        <input type="hidden" name="delete" value="<?php $val->get_ma_tloai() ?>">
                                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
@@ -62,7 +60,7 @@
 
 
     <?php 
-        include '../layouts/footer.php';
+        include "./views/layout_admin/footer.php"
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>

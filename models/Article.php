@@ -20,7 +20,8 @@ class BaiViet{
         $this->ma_tloai = $ma_tloai;
         $this->tomtat = $tomtat;
         $this->noidung = $noidung;
-        $this->ma_tgia = $ngayviet;
+        $this->ma_tgia = $ma_tgia;
+        $this->ngayviet = $ngayviet;
         $this->hinhanh = $hinhanh;
     }
     

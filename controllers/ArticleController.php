@@ -1,24 +1,98 @@
 <?php
+include_once "services/ArticleService.php";
+include_once "services/CategoryService.php";
+include_once "services/AuthorService.php";
+include_once "models/Article.php";
 class ArticleController{
     // Hàm xử lý hành động index
     public function index(){
-        // Nhiệm vụ 1: Tương tác với Services/Models
-        echo "Tương tác với Services/Models from Article";
-        // Nhiệm vụ 2: Tương tác với View
-        echo "Tương tác với View from Article";
+        $articles = new ArticleService();
+        $baiviet = $articles->getAllArticles();
+        include "./views/article/article.php";        
     }
 
     public function add(){
-        // Nhiệm vụ 1: Tương tác với Services/Models
-        // echo "Tương tác với Services/Models from Article";
-        // Nhiệm vụ 2: Tương tác với View
-        include("views/article/add_article.php");
+        $cate = new CategoryService();
+        $categories = $cate->getAllCategory();
+        $auth = new AuthorService();
+        $authors = $auth->getAllAuthor();
+
+        include "./views/article/add_article.php";
+
     }
 
-    public function list(){
-        // Nhiệm vụ 1: Tương tác với Services/Models
-        // echo "Tương tác với Services/Models from Article";
-        // Nhiệm vụ 2: Tương tác với View
-        include("views/article/list_article.php");
+
+    public function edit()
+    {
+        $articles = new ArticleService();
+
+        $baiviet = $articles->getDetail($_GET["id"])[0];
+        $cate = new CategoryService();
+        $categories = $cate->getAllCategory();
+        $auth = new AuthorService();
+        $authors = $auth->getAllAuthor();
+
+
+        
+        include "./views/article/edit_article.php";
+        
+
     }
+
+
+    public function postEdit()
+    {
+        $id = $_POST["txtArticleId"];
+        $articles = new ArticleService();
+        $tieude = $_POST["txtTitleName"];
+        $ten_bhat = $_POST["txtMusicName"];
+        $short_content = $_POST["short_content"];
+        $category_id = $_POST["category_id"];
+        $author_id = $_POST["author_id"];
+        $content = $_POST["content"];
+        $date = $_POST["date"] ?? date("Y-m-d");
+        $img_new = $_POST["img"] ?? $_POST["img_old"];
+        if ($_FILES["img"]["name"]){
+            if (file_exists($_POST["img_old"])) {
+                unlink($_POST["img_old"]);
+            }
+            move_uploaded_file($_FILES["img"]["tmp_name"], "../../btth02v2/assets/image_article/" . basename($_FILES["img"]["name"]));
+            $img_new = ("../../btth02v2/assets/image_article/" . basename($_FILES["img"]["name"]));
+
+        }
+        $article_update = new BaiViet($id, $tieude, $ten_bhat, $category_id, $short_content, $content, $author_id, $date, $img_new);
+        $check = $articles->update($article_update);
+        $this->index();
+
+    }
+   
+    public function postInsert()
+    {
+        $articles = new ArticleService();
+        $tieude = $_POST["txtTitleName"];
+        $ten_bhat = $_POST["txtMusicName"];
+        $short_content = $_POST["short_content"];
+        $category_id = $_POST["category_id"];
+        $author_id = $_POST["author_id"];
+        $content = $_POST["content"];
+        $date = $_POST["date"] ?? date("Y-m-d");
+        move_uploaded_file($_FILES["img"]["tmp_name"], "../../btth02v2/assets/image_article/" . basename($_FILES["img"]["name"]));
+        $img_new = ("../../btth02v2/assets/image_article/" . basename($_FILES["img"]["name"]));
+        $articles->insert(new BaiViet(0, $tieude, $ten_bhat, $category_id, $short_content, $content, $author_id, $date, $img_new));
+        $this->index();
+
+    }
+
+    public function delete()
+    {
+        $id = $_POST["id"];
+        $articles = new ArticleService();
+        $articles->delete($id);
+        $this->index();
+    }
+
 }
+
+
+
+?>

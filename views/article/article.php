@@ -11,11 +11,8 @@
 </head>
 <body>
     <?php
-        include '../layouts/header.php';
-
-        include '../../includes/Database.php';
-
-        include '../../hepler/Support.php';
+        include_once "./views/layout_admin/header.php";
+        
 
         
 
@@ -24,7 +21,7 @@
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="add_article.php" class="btn btn-success">Thêm mới</a>
+                <a href="?controller=article&action=add" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -41,22 +38,23 @@
                     </thead>
                     <tbody>
                         <?php
-                            foreach($db->getAllRecordTable("baiviet") as $key => $val){
+                            foreach($baiviet as $key){
                         ?>
                             <tr>
-                                <th scope="row"><?php echo $val["ma_bviet"] ?></th>
-                                <th scope="row"><?php echo $val["tieude"] ?></th>
-                                <th scope="row"><?php echo $val["ten_bhat"] ?></th>
-                                <th scope="row"><?php echo  SplitStringByWord($val["tomtat"], 15)  ?></th>
-                                <th scope="row"><?php echo $val["noidung"] ?></th>
-                                <th scope="row"><?php echo date("y/m/d", strtotime($val["ngayviet"])) ?></th>
-                                <td><img src="<?php echo $val["hinhanh"] ?>" alt="" width="100px" height="100px"></td>
+                                <th scope="row"><?php echo $key->get_ma_bviet() ?></th>
+                                <th scope="row"><?php echo $key->get_tieude() ?></th>
+                                <th scope="row"><?php echo $key->get_ten_bhat() ?></th>
+                                <th scope="row"><?php echo  $key->get_tomtat()  ?></th>
+                                <th scope="row"><?php echo $key->get_noidung() ?></th>
+                                <th scope="row"><?php  ?></th>
+                                <!-- echo date("y/m/d", strtotime($key->get_ngayviet() ?? new DateTime())) -->
+                                <td><img src="../../../assets/image_article/screencapture-127-0-0-1-8000-admin-news-2023-02-28-22_26_26.png" alt="" width="100px" height="100px"></td>
                                 <td>
-                                    <a href="edit_article.php?id=<?php echo $val["ma_bviet"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="?controller=article&action=edit&id=<?php echo $key->get_ma_bviet() ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                                 <td>
-                                    <form action="process_article.php" method="post">
-                                        <input type="hidden" name="delete" value="<?php echo $val["ma_bviet"] ?>" >
+                                    <form action="?controller=article&action=delete" method="post">
+                                        <input type="hidden" name="id" value="<?php echo $key->get_ma_bviet() ?>" >
 
                                         <button type="submit" class="btn btn-danger" ><i class="fa-solid fa-trash"></i></button>
                                     </form>
@@ -77,7 +75,8 @@
 
 
     <?php 
-        include '../layouts/footer.php';
+        include "./views/layout_admin/footer.php"
+
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
