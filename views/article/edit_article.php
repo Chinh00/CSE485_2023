@@ -14,35 +14,41 @@
         include '../layouts/header.php';
 
         include '../../includes/Database.php';
+
+
         $categories = $db->getAllRecordTable("theloai");
         $authors = $db->getAllRecordTable("tacgia");
+        $article_old = $db->getWithCondition("baiviet", array("ma_bviet" => $_GET["id"]));
     ?>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold">Thêm bài viết</h3>
+                <h3 class="text-center text-uppercase fw-bold">Sửa bài viết</h3>
                 <form action="process_article.php" method="post" enctype="multipart/form-data">
                     
-                    
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Mã bài viết</span>
+                        <input type="text" class="form-control" readonly name="txtArticleId"  value="<?php echo $article_old[0]["ma_bviet"] ?>">
+                    </div>
                     
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tiêu đề</span>
-                        <input type="text" class="form-control" name="txtTitleName">
+                        <input type="text" class="form-control" name="txtTitleName" value="<?php echo $article_old[0]["tieude"] ?>">
                     </div>
                     
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên bài hát</span>
-                        <input type="text" class="form-control" name="txtMusicName">
+                        <input type="text" class="form-control" name="txtMusicName" value="<?php echo $article_old[0]["ten_bhat"] ?>">
                     </div>
                     
                     <div class="input-group mt-3 mb-3">
                         <select class="form-select" aria-label="Default select example" name="category_id">
-                            <option selected>Chọn thể loại</option>
+                            <option>Chọn thể loại</option>
                             <?php
                                 foreach($categories as $key => $val) {
                             ?>
-                                <option value="<?php echo $val["ma_tloai"]?>"><?php echo $val["ten_tloai"]  ?></option>
+                                <option value="<?php echo $val["ma_tloai"]?>" <?php if($article_old[0]["ma_tloai"] == $val["ma_tloai"]) { echo "selected"; }  ?>><?php echo $val["ten_tloai"]  ?></option>
                             <?php
                                 }
                             ?>
@@ -54,7 +60,7 @@
                             <?php
                                 foreach($authors as $key => $val) {
                             ?>
-                                <option value="<?php echo $val["ma_tgia"]?>"><?php echo $val["ten_tgia"]  ?></option>
+                                <option value="<?php echo $val["ma_tgia"]?>" <?php if($article_old[0]["ma_tgia"] == $val["ma_tgia"]) { echo "selected"; }  ?> ><?php echo $val["ten_tgia"]  ?></option>
                             <?php
                                 }
                             ?>
@@ -62,25 +68,30 @@
                     </div>
                     <div class="input-group mt-3 mb-3">
                         <div class="form-floating">
-                            <textarea class="form-control" name="short_content" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                            <textarea class="form-control" name="short_content" placeholder="Leave a comment here" id="floatingTextarea"><?php echo $article_old[0]["tomtat"]  ?></textarea>
                             <label for="floatingTextarea">Tóm tắt</label>
                         </div>
                     </div>
                     <div class="input-group mt-3 mb-3">
                         <div class="form-floating">
-                            <textarea class="form-control" name="content" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                            <textarea class="form-control" name="content" placeholder="Leave a comment here" id="floatingTextarea"><?php echo $article_old[0]["noidung"]  ?></textarea>
                             <label for="floatingTextarea">Nội dung</label>
                         </div>
                     </div>
                     <div class="input-group mt-3 mb-3">
                         <div class="form-floating">
-                            <input type="date" class="form-control" name="date">
+                            <input type="date" class="form-control" name="date" value="<?php echo date("Y/m/d")  ?>">
                             <label for="floatingTextarea">Chọn ngày</label>
                         </div>
                     </div>
                     <div class="input-group mt-3 mb-3">
                         <input type="file"  class="form-control" name="img">
                     </div>
+                    <div class="input-group mt-3 mb-3">
+                        <img src="<?php echo $article_old[0]["hinhanh"]  ?>" class="img-thumbnail" alt="...">
+                        <input type="hidden" name="img_old" value="<?php echo $article_old[0]["hinhanh"]  ?>">
+                    </div>
+
                     <div class="form-group  float-end ">
                         <input type="submit" value="Lưu lại" class="btn btn-success">
                         <a href="article.php" class="btn btn-warning ">Quay lại</a>
