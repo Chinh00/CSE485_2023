@@ -26,7 +26,7 @@
                                 <img src="<?php echo $key->get_hinhanh() ?>" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">
-                                        <a href="detail.php?id=<?php echo $key->get_ma_bviet()  ?>" class="text-decoration-none"><?php echo $key->get_tieude() ?></a>
+                                        <a href="?controller=home&action=get&id=<?php echo $key->get_ma_bviet()  ?>" class="text-decoration-none"><?php echo $key->get_tieude() ?></a>
                                     </h5>
                                 </div>
                             </div>

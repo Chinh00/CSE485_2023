@@ -1,6 +1,9 @@
 <?php
 
     include_once("services/ArticleService.php");
+    include_once("services/AuthorService.php");
+    include_once "services/CategoryService.php";
+
     include_once("services/MemberService.php");
 class HomeController {
 
@@ -49,6 +52,20 @@ class HomeController {
             session_unset();
             header("location: ?controller=home&action=index");
         }
+    }
+
+    public function get()
+    {
+        $id = $_GET["id"];
+        $articles = new ArticleService();
+        $article = $articles->getDetail($id);
+        $authors = new AuthorService();
+        $author = $authors->getDetail($article[0]->get_ma_tgia());
+        $categories = new CategoryService();
+        $category = $categories->getDetail($article[0]->get_ma_tloai());
+
+        include "views/home/detail.php";
+        
     }
 
 }
