@@ -12,18 +12,23 @@ class BaiViet{
     private $ngayviet;
     private $hinhanh;
 
-    public function __construct($ma_bviet, $tieude, $ten_bhat, $ma_tloai, $tomtat, $noidung, $ma_tgia, $ngayviet, $hinhanh)
-    {
-        $this->ma_bviet = $ma_bviet;
-        $this->tieude = $tieude;
-        $this->ten_bhat = $ten_bhat;
-        $this->ma_tloai = $ma_tloai;
-        $this->tomtat = $tomtat;
-        $this->noidung = $noidung;
-        $this->ma_tgia = $ngayviet;
-        $this->hinhanh = $hinhanh;
-    }
+    // public function __construct($ma_bviet, $tieude, $ten_bhat, $ma_tloai, $tomtat, $noidung, $ma_tgia, $ngayviet, $hinhanh)
+    // {
+    //     $this->ma_bviet = $ma_bviet;
+    //     $this->tieude = $tieude;
+    //     $this->ten_bhat = $ten_bhat;
+    //     $this->ma_tloai = $ma_tloai;
+    //     $this->tomtat = $tomtat;
+    //     $this->noidung = $noidung;
+    //     $this->ma_tgia = $ngayviet;
+    //     $this->hinhanh = $hinhanh;
+    // }
     
+
+    public function __construct()
+    {
+        $this->ma_bviet = "SDFDS";
+    }
         public function get_ma_bviet() {
             return $this->ma_bviet;
         }
