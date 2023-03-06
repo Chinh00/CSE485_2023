@@ -54,7 +54,6 @@ class ArticleService{
         ma_tgia = {$article->get_ma_tgia()},
         ngayviet = '{$article->get_ngayviet()}',
         hinhanh = '{$article->get_hinhanh()}' WHERE ma_bviet = {$article->get_ma_bviet()};";
-        echo $sql;
 
         $stmt = $conn->query($sql);
         if ($stmt) {

@@ -56,13 +56,13 @@ class ArticleController{
             if (file_exists($_POST["img_old"])) {
                 unlink($_POST["img_old"]);
             }
-            move_uploaded_file($_FILES["img"]["tmp_name"], "../../btth02v2/assets/image_article/" . basename($_FILES["img"]["name"]));
-            $img_new = ("../../btth02v2/assets/image_article/" . basename($_FILES["img"]["name"]));
+            move_uploaded_file($_FILES["img"]["tmp_name"], "assets/image_article/" . basename($_FILES["img"]["name"]));
+            $img_new = ("assets/image_article/" . basename($_FILES["img"]["name"]));
 
         }
         $article_update = new BaiViet($id, $tieude, $ten_bhat, $category_id, $short_content, $content, $author_id, $date, $img_new);
         $check = $articles->update($article_update);
-        $this->index();
+        header("location: ?controller=article&action=index");
 
     }
    
@@ -76,10 +76,12 @@ class ArticleController{
         $author_id = $_POST["author_id"];
         $content = $_POST["content"];
         $date = $_POST["date"] ?? date("Y-m-d");
-        move_uploaded_file($_FILES["img"]["tmp_name"], "../../btth02v2/assets/image_article/" . basename($_FILES["img"]["name"]));
-        $img_new = ("../../btth02v2/assets/image_article/" . basename($_FILES["img"]["name"]));
-        $articles->insert(new BaiViet(0, $tieude, $ten_bhat, $category_id, $short_content, $content, $author_id, $date, $img_new));
-        $this->index();
+        
+        echo "assets/image_article/" . basename($_FILES["img"]["name"]);
+        move_uploaded_file($_FILES["img"]["tmp_name"], "assets/image_article/" . basename($_FILES["img"]["name"]) );
+        $img = ("assets/image_article/" . basename($_FILES["img"]["name"]));
+        $articles->insert(new BaiViet(0, $tieude, $ten_bhat, $category_id, $short_content, $content, $author_id, $date, $img));
+        // $this->index();
 
     }
 
@@ -88,7 +90,7 @@ class ArticleController{
         $id = $_POST["id"];
         $articles = new ArticleService();
         $articles->delete($id);
-        $this->index();
+        header("location: ?controller=article&action=index");
     }
 
 }

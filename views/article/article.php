@@ -46,9 +46,9 @@
                                 <th scope="row"><?php echo $key->get_ten_bhat() ?></th>
                                 <th scope="row"><?php echo  $key->get_tomtat()  ?></th>
                                 <th scope="row"><?php echo $key->get_noidung() ?></th>
-                                <th scope="row"><?php  ?></th>
-                                <!-- echo date("y/m/d", strtotime($key->get_ngayviet() ?? new DateTime())) -->
-                                <td><img src="../../../assets/image_article/screencapture-127-0-0-1-8000-admin-news-2023-02-28-22_26_26.png" alt="" width="100px" height="100px"></td>
+                                <th scope="row"><?php echo date("y/m/d", strtotime($key->get_ngayviet() ?? new DateTime()))  ?></th>
+                                
+                                <td><img src="<?php echo $key->get_hinhanh() ?>" alt="" width="100px" height="100px"></td>
                                 <td>
                                     <a href="?controller=article&action=edit&id=<?php echo $key->get_ma_bviet() ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
