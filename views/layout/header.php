@@ -1,4 +1,6 @@
-
+<?php
+    
+?>
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">
@@ -13,37 +15,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./">Trang chủ</a>
+                        <a class="nav-link active" aria-current="page" href="./">Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <?php
                             session_start();
-                            if (isset($_SESSION["isLogin"])) {
-                                if ($_SESSION["isLogin"] == 1) {
-                                    ?>
-4                                        <div class="btn-group">
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <?php  echo $_SESSION["role"] ?>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="../../BTTH01_CSE485/process_user.php">Đăng xuất</a></li>
-                                        
-                                        </ul>
-                                        </div>
-                                    <?php
+                            if (!isset($_SESSION["isLogin"])) {
+                                ?>
+                                    <a class="nav-link" aria-current="page" href="?controller=home&action=login">Đăng nhập</a>
 
-                                }
-                                else {
-                                    ?> 
-                                        <a class="nav-link" href="">Đăng nhập</a>
-                                    <?php 
-                                }
-                                
-                            
+                                <?php
                             } else {
-                                ?> 
-                                    <a class="nav-link" href="?controller=home&action=login">Đăng nhập</a>
-                                <?php 
+                        ?>
+                                <a class="nav-link" aria-current="page" href="?controller=home&action=logout">Đăng xuất</a>
+
+                        <?php
                             }
                         ?>
                     </li>

@@ -14,9 +14,8 @@
 <body>
     
     <?php
-        include 'layouts/header.php';
+      include "./views/layout_admin/header.php";
 
-        include '../includes/Database.php';
 
         
     ?>
@@ -32,7 +31,6 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            <?php echo count($db->getAllRecordTable("users"))?>
                         </h5>
                     </div>
                 </div>
@@ -46,7 +44,6 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            <?php echo count($db->getAllRecordTable("theloai")) ?>
 
                         </h5>
                     </div>
@@ -61,7 +58,6 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            <?php echo count($db->getAllRecordTable("tacgia"))?>
                         </h5>
                     </div>
                 </div>
@@ -75,7 +71,6 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            <?php echo count($db->getAllRecordTable("baiviet"))?>
                         </h5>
                     </div>
                 </div>
@@ -85,7 +80,8 @@
 
 
     <?php 
-        include 'layouts/footer.php';
+    include "./views/layout_admin/footer.php";
+
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>

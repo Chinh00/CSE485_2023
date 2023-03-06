@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="process_user.php">
+                        <form method="POST" action="?controller=home&action=postLogin">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" placeholder="username" name="username" >

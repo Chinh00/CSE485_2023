@@ -1,4 +1,16 @@
+<?php
+    session_start();
+    if (isset($_SESSION["isLogin"])) {
+        if ($_SESSION["isAdmin"] == 1) {
 
+        } else {
+            header("location: ?controler=admin&action=index");
+        }
+    } else {
+        header("location: ?controler=home&action=login");
+    }
+
+?>
 <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">
@@ -11,10 +23,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active fw-bold" aria-current="page" href="./">Trang chủ</a>
+                            <a class="nav-link active fw-bold" aria-current="page" href="?controller=admin&action=index">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?controller=home&action=index">Trang ngoài</a>
+                            <a class="nav-link" href="./">Trang ngoài</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="?controller=category&action=index">Thể loại</a>
@@ -31,7 +43,7 @@
                         
                     </ul>
                     <div class="d-flex">
-                        
+                        <a href="?controller=home&action=logout" class="btn btn-primary">Logout</a>
                     </div>
                 </div>
             </div>
