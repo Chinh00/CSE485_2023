@@ -24,7 +24,19 @@ class CategoryService {
     }
     public function getDetail($id)
     {
-       
+
+        $dbConn = new DBConnection();
+        $conn = $dbConn->getConnection();
+        $sql = "SELECT * FROM theloai WHERE ma_tloai = {$id}";
+        $stmt = $conn->query($sql);
+        $categories = [];
+        while($row = $stmt->fetch()){
+            $category = new TheLoai($row["ma_tloai"], $row["ten_tloai"]);
+            array_push($categories, $category);
+        }
+        $category = $categories[0];
+        return $category;
+
     }
 }
 

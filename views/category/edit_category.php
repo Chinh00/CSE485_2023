@@ -11,13 +11,8 @@
 </head>
 <body>
     <?php
-        include '../layouts/header.php';
-
-        include '../../includes/Database.php';
-        $id = $_GET["id"] ?? -1;
-        if ($id > 0) {
-            $the_loai_edit = $db->getWithCondition("theloai", array("ma_tloai" => $id));
-        }
+        
+include "./views/layout_admin/header.php"
         
     ?>
     <main class="container mt-5 mb-5">

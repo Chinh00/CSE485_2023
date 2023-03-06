@@ -8,6 +8,10 @@
             $categories = $category->getAllCategory();
             include "./views/category/category.php";
         }
+        public function edit()
+        {
+            $id = $_GET["id"];
+        }
     }
  
 ?>

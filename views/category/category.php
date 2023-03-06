@@ -37,10 +37,10 @@ include "./views/layout_admin/header.php"
                                 <th scope="row"><?php echo $val->get_ma_tloai() ?></th>
                                 <td><?php echo $val->get_ten_tloai() ?></td>
                                 <td>
-                                    <a href="edit_category.php?id=<?php echo $val->get_ma_tloai() ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="?controller=category&action=edit&id=<?php echo $val->get_ma_tloai() ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                                 <td>
-                                    <form action="process_add_category.php" method="post">
+                                    <form action="?controller=category&action=delete" method="post">
                                         <input type="hidden" name="delete" value="<?php $val->get_ma_tloai() ?>">
                                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                     </form>
