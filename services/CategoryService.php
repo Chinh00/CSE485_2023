@@ -38,6 +38,45 @@ class CategoryService {
         return $category;
 
     }
+
+
+    public function update($category)
+    {
+        $dbConn = new DBConnection();
+        $conn = $dbConn->getConnection();
+        $sql = "UPDATE theloai SET ten_tloai = '{$category->get_ten_tloai()}' WHERE ma_tloai = {$category->get_ma_tloai()}";
+        $conn->query($sql);
+    }
+
+    public function insert($category)
+    {
+        $dbConn = new DBConnection();
+        $conn = $dbConn->getConnection();
+        $sql = "INSERT INTO theloai VALUES (0, '{$category->get_ten_tloai()}', 0)";
+        $conn->query($sql);
+
+    }
+
+    public function delete($id)
+    {
+        $dbConn = new DBConnection();
+        $conn = $dbConn->getConnection();
+
+        $sql = "SELECT * FROM baiviet WHERE ma_tloai = {$id};";
+        $stmt = $conn->query($sql);
+        $article_img = [];
+        while ($row = $stmt->fetch()) {
+            array_push($article_img, $row["hinhanh"]);
+        }
+        $sql = "DELETE FROM baiviet WHERE ma_tloai = {$id}";
+
+        $conn->query($sql);
+        
+        $sql = "DELETE FROM theloai WHERE ma_tloai = {$id}";
+
+        $conn->query($sql);
+        return $article_img;
+    }
 }
 
 ?>

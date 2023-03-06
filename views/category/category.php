@@ -19,7 +19,7 @@ include "./views/layout_admin/header.php"
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="add_category.php" class="btn btn-success">Thêm mới</a>
+                <a href="?controller=category&action=add" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -41,7 +41,7 @@ include "./views/layout_admin/header.php"
                                 </td>
                                 <td>
                                     <form action="?controller=category&action=delete" method="post">
-                                        <input type="hidden" name="delete" value="<?php $val->get_ma_tloai() ?>">
+                                        <input type="hidden" name="id" value="<?php echo $val->get_ma_tloai() ?>">
                                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
