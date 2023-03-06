@@ -89,6 +89,10 @@ class ArticleController{
     {
         $id = $_POST["id"];
         $articles = new ArticleService();
+        $baiviet = $articles->getDetail($id)[0];
+        if (file_exists($baiviet->get_hinhanh())) {
+            unlink($baiviet->get_hinhanh());
+        }
         $articles->delete($id);
         header("location: ?controller=article&action=index");
     }
